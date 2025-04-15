@@ -31,7 +31,9 @@ export default function CallLogs() {
           ...doc.data()
         })) as CallLog[];
 
-        setCalls(callsData);
+        // Filter out calls with 'disconnected' status
+        const filteredCalls = callsData.filter(call => call.status !== 'disconnected');
+        setCalls(filteredCalls);
       } catch (error) {
         console.error('Error fetching calls:', error);
         toast.error('Failed to load call history');
