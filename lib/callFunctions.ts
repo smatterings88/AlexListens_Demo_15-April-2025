@@ -137,10 +137,8 @@ async function saveCallLog(userId: string, status: 'completed' | 'disconnected' 
     await updateMinutesWallet(userId, duration);
     console.log('Minutes wallet updated successfully');
 
-    // Get the updated wallet data
     const updatedWallet = await getMinutesWallet(userId);
     
-    // Dispatch the event with the updated wallet data
     if (typeof window !== 'undefined' && updatedWallet) {
       window.dispatchEvent(new CustomEvent('minutesWalletUpdated', {
         detail: updatedWallet
@@ -191,9 +189,9 @@ export async function startCall(callbacks: CallCallbacks, callConfig: CallConfig
 
         if (durationMs > 60000) {
           warningTimer = setTimeout(async () => {
-            if (uvSession?.callController) {
+            if (uvSession) {
               try {
-                await uvSession.callController.sendSystemMessage('I should let you know that we have about one minute left in our conversation.');
+                await uvSession.sendMessage('I should let you know that we have about one minute left in our conversation.');
               } catch (error) {
                 console.error('Error sending warning message:', error);
               }
