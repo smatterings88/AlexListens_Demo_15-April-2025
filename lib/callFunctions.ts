@@ -10,7 +10,6 @@ import toast from 'react-hot-toast';
 let uvSession: UltravoxSession | null = null;
 let callStartTime: Date | null = null;
 let durationCheckTimer: NodeJS.Timeout | null = null;
-let warningTimer: NodeJS.Timeout | null = null;
 const debugMessages: Set<string> = new Set(["debug"]);
 
 let statusListener: ((event: any) => void) | null = null;
@@ -183,24 +182,6 @@ export async function startCall(callbacks: CallCallbacks, callConfig: CallConfig
         if (durationCheckTimer) {
           clearTimeout(durationCheckTimer);
         }
-        if (warningTimer) {
-          clearTimeout(warningTimer);
-        }
-
-        if (durationMs > 60000) {
-          warningTimer = setTimeout(async () => {
-            if (uvSession) {
-              try {
-                await uvSession.addMessage({
-                  role: RoleEnum.ASSISTANT,
-                  text: 'I should let you know that we have about one minute left in our conversation.'
-                });
-              } catch (error) {
-                console.error('Error sending warning message:', error);
-              }
-            }
-          }, durationMs - 60000);
-        }
 
         durationCheckTimer = setTimeout(async () => {
           const message = callConfig.timeExceededMessage || "Maximum call duration reached.";
@@ -269,10 +250,6 @@ export async function endCall(status: 'completed' | 'disconnected' | 'error' | '
         clearTimeout(durationCheckTimer);
         durationCheckTimer = null;
       }
-      if (warningTimer) {
-        clearTimeout(warningTimer);
-        warningTimer = null;
-      }
       
       callStartTime = null;
       currentUserId = null;
@@ -287,10 +264,6 @@ export async function endCall(status: 'completed' | 'disconnected' | 'error' | '
     if (durationCheckTimer) {
       clearTimeout(durationCheckTimer);
       durationCheckTimer = null;
-    }
-    if (warningTimer) {
-      clearTimeout(warningTimer);
-      warningTimer = null;
     }
 
     if (userId || currentUserId) {
