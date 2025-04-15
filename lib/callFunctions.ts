@@ -191,7 +191,7 @@ export async function startCall(callbacks: CallCallbacks, callConfig: CallConfig
           warningTimer = setTimeout(async () => {
             if (uvSession) {
               try {
-                await uvSession.sendMessage('I should let you know that we have about one minute left in our conversation.');
+                await uvSession.sendUserMessage('I should let you know that we have about one minute left in our conversation.');
               } catch (error) {
                 console.error('Error sending warning message:', error);
               }
