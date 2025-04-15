@@ -2,7 +2,7 @@ import { db } from './firebase';
 import { doc, getDoc, setDoc, updateDoc, serverTimestamp, Timestamp, FieldValue } from 'firebase/firestore';
 import { MinutesWallet } from './types';
 
-const DEFAULT_SECONDS = 300; // 5 minutes * 60 seconds
+const DEFAULT_SECONDS = 420; // 7 minutes * 60 seconds
 
 export async function initializeMinutesWallet(userId: string): Promise<MinutesWallet> {
   const walletRef = doc(db, 'minutesWallets', userId);
