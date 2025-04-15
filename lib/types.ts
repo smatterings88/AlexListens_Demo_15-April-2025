@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp, FieldValue } from 'firebase/firestore';
 
 export interface JoinUrlResponse {
   callId: string;
@@ -22,8 +22,8 @@ export interface CallLog {
 
 export interface MinutesWallet {
   userId: string;
-  seconds: number; // Changed from minutes to seconds
-  lastUpdated: Timestamp;
+  seconds: number;
+  lastUpdated: Timestamp | FieldValue;
 }
 
 export enum RoleEnum {
