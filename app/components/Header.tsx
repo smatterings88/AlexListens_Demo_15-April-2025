@@ -44,7 +44,16 @@ const Header = () => {
         <nav className="hidden md:block">
           <ul className="flex space-x-8 items-center">
             <li><Link href="#" className="text-blue-100 hover:text-white transition-colors">Contact</Link></li>
-            <li><Link href="#" className="text-blue-100 hover:text-white transition-colors">Pricing</Link></li>
+            <li>
+              <a 
+                href="https://alexlistens.com/pricing" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-100 hover:text-white transition-colors"
+              >
+                Pricing
+              </a>
+            </li>
             {!loading && (
               <>
                 {user ? (
@@ -87,7 +96,17 @@ const Header = () => {
             <nav className="w-full">
               <ul className="flex flex-col items-center space-y-8">
                 <li><Link href="#" className="text-white text-xl" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link></li>
-                <li><Link href="#" className="text-white text-xl" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link></li>
+                <li>
+                  <a 
+                    href="https://alexlistens.com/pricing" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-white text-xl"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Pricing
+                  </a>
+                </li>
                 {!loading && (
                   <>
                     {user ? (
