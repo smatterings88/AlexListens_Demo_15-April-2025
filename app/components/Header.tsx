@@ -43,10 +43,8 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex space-x-8 items-center">
-            <li><Link href="#" className="text-blue-100 hover:text-white transition-colors">Home</Link></li>
-            <li><Link href="#" className="text-blue-100 hover:text-white transition-colors">Features</Link></li>
-            <li><Link href="#" className="text-blue-100 hover:text-white transition-colors">About</Link></li>
             <li><Link href="#" className="text-blue-100 hover:text-white transition-colors">Contact</Link></li>
+            <li><Link href="#" className="text-blue-100 hover:text-white transition-colors">Pricing</Link></li>
             {!loading && (
               <>
                 {user ? (
@@ -54,14 +52,25 @@ const Header = () => {
                     <UserDropdown />
                   </li>
                 ) : (
-                  <li>
-                    <button
-                      onClick={() => setIsSignInOpen(true)}
-                      className="bg-white text-[#004AAA] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
-                    >
-                      Sign In
-                    </button>
-                  </li>
+                  <>
+                    <li>
+                      <Link 
+                        href="#" 
+                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                        onClick={() => setIsSignUpOpen(true)}
+                      >
+                        Get Started
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => setIsSignInOpen(true)}
+                        className="bg-white text-[#004AAA] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
+                      >
+                        Sign In
+                      </button>
+                    </li>
+                  </>
                 )}
               </>
             )}
@@ -77,10 +86,8 @@ const Header = () => {
           <div className="flex flex-col items-center justify-center h-full">
             <nav className="w-full">
               <ul className="flex flex-col items-center space-y-8">
-                <li><Link href="#" className="text-white text-xl" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
-                <li><Link href="#" className="text-white text-xl" onClick={() => setIsMobileMenuOpen(false)}>Features</Link></li>
-                <li><Link href="#" className="text-white text-xl" onClick={() => setIsMobileMenuOpen(false)}>About</Link></li>
                 <li><Link href="#" className="text-white text-xl" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link></li>
+                <li><Link href="#" className="text-white text-xl" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link></li>
                 {!loading && (
                   <>
                     {user ? (
@@ -88,17 +95,30 @@ const Header = () => {
                         <UserDropdown />
                       </li>
                     ) : (
-                      <li>
-                        <button
-                          onClick={() => {
-                            setIsMobileMenuOpen(false);
-                            setIsSignInOpen(true);
-                          }}
-                          className="bg-white text-[#004AAA] px-6 py-3 rounded-md text-xl"
-                        >
-                          Sign In
-                        </button>
-                      </li>
+                      <>
+                        <li>
+                          <button
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setIsSignUpOpen(true);
+                            }}
+                            className="bg-blue-500 text-white px-6 py-3 rounded-md text-xl hover:bg-blue-600 transition-colors"
+                          >
+                            Get Started
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setIsSignInOpen(true);
+                            }}
+                            className="bg-white text-[#004AAA] px-6 py-3 rounded-md text-xl"
+                          >
+                            Sign In
+                          </button>
+                        </li>
+                      </>
                     )}
                   </>
                 )}
