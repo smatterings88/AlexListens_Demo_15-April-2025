@@ -15,6 +15,15 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, loading } = useAuth();
 
+  const scrollToFooter = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const footer = document.getElementById('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <header className="bg-[#004AAA] py-4 px-6 fixed w-full top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -43,7 +52,7 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex space-x-8 items-center">
-            <li><Link href="#" className="text-blue-100 hover:text-white transition-colors">Contact</Link></li>
+            <li><a href="#footer" onClick={scrollToFooter} className="text-blue-100 hover:text-white transition-colors">Contact</a></li>
             <li>
               <a 
                 href="https://alexlistens.com/pricing" 
@@ -95,7 +104,7 @@ const Header = () => {
           <div className="flex flex-col items-center justify-center h-full">
             <nav className="w-full">
               <ul className="flex flex-col items-center space-y-8">
-                <li><Link href="#" className="text-white text-xl" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link></li>
+                <li><a href="#footer" onClick={scrollToFooter} className="text-white text-xl">Contact</a></li>
                 <li>
                   <a 
                     href="https://alexlistens.com/pricing" 
